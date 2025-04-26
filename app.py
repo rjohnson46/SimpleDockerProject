@@ -18,6 +18,8 @@ def get_redis_connection():
         return None
 
 cache = get_redis_connection()
+if cache is None:
+    app.logger.warning("Proceeding without Redis connection. Some features may not work.")
 
 @app.route('/')
 def hello():
@@ -31,6 +33,8 @@ def hello():
         app.logger.error(f"Redis operation error: {e}")
         return jsonify({"error": "Redis operation failed"}), 500
 
-if __name__ == "__main__":
-    # Use 0.0.0.0 to ensure the app is accessible from outside the container
+# Use 0.0.0.0 to ensure the app is accessible from outside the container
+try:
     app.run(host='0.0.0.0', port=int(os.getenv('APP_PORT', 5000)))
+except Exception as e:
+    app.logger.error(f"Application failed to start: {e}")
