@@ -1,4 +1,4 @@
-# SimpleDockerProject
+# SimpleDockerProject (UNFINISHED)
 Project to display a simple HELLO WORLD page inside of a Container
 
 1. Update Linux (sudo apt update)
