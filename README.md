@@ -1,5 +1,5 @@
 # SimpleDockerProject (UNFINISHED)
-Project to display a simple HELLO WORLD page inside of a Container
+Project to display a simple HELLO WORLD page inside of a Container (This will work on Ubuntu/Debian Based Distros of Linux)
 
 1. Update Linux (sudo apt update)
 2. Upgrade Linux (sudo apt upgrade)
