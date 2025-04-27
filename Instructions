@@ -28,28 +28,28 @@ Project to display a simple HELLO WORLD page inside of a Container (This will wo
      Line 2 ---> redis
      Hit CTRL+X to save and type Y or Yes to confirm
 
-13 Create dockerfile (touch dockerfile)
+17. Create dockerfile (touch dockerfile)
 
-14 Copy & paste code from Github File "dockerfile" located in Github Repo
+18. Copy & paste code from Github File "dockerfile" located in Github Repo
 
-15 Open "dockerfile" and copy & paste code (sudo nano dockerfile)
+19. Open "dockerfile" and copy & paste code (sudo nano dockerfile)
    After copy & paste hit CTRL+X to save and type Y or Yes to confirm
 
-16. Create "docker-compose.yml" file (touch docker-compose.yml)
+20. Create "docker-compose.yml" file (touch docker-compose.yml)
     
-18. Open "docker-compose.yml" file and copy & paste code (sudo nano docker-compose.yml)
+21. Open "docker-compose.yml" file and copy & paste code (sudo nano docker-compose.yml)
     Copy & Paste code from "docker-compose.yml) file located in Github Repo
     After Copy & Paste hit CTRL+X to save and type Y or YES to confirm
     #BE AWARE THAT YAML FILES ARE VERY SENSITIVE TO INDENTATION, SPACES, & SYNTAX. USE A.I TO CORRECT IT IF NECESSARY
 
-19. Make sure you are still in "docker-projects" directory (cd /docker-projects)
+22. Make sure you are still in "docker-projects" directory (cd /docker-projects)
     #THE COMMAND IN THE NEXT STEP DOESN'T WORK UNLESS YOU ARE IN "DOCKER-PROJECTS" DIR
 
-20. Run command to start building the images & containers (sudo docker-compose up --build)
+23. Run command to start building the images & containers (sudo docker-compose up --build)
 
-21. After commands finish running your container should be built.
+24. After commands finish running your container should be built.
     Go to "http://localhost:5000" on your web browser
     You should see a message "Hello World! You have visited 1 times"
     #Refreshing the page will add to visitor count
 
-23. To stop or break down container after you are done (sudo docker-compose down)
+25. To stop or break down container after you are done (sudo docker-compose down)
