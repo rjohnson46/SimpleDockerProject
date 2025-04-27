@@ -37,7 +37,7 @@ Project to display a simple HELLO WORLD page inside of a Container (This will wo
 
 16. Create "docker-compose.yml" file (touch docker-compose.yml)
     
-18. Open "docker-compose.yml" file and copy & paste code (sudo nano touch)
+18. Open "docker-compose.yml" file and copy & paste code (sudo nano docker-compose.yml)
     Copy & Paste code from "docker-compose.yml) file located in Github Repo
     After Copy & Paste hit CTRL+X to save and type Y or YES to confirm
     #BE AWARE THAT YAML FILES ARE VERY SENSITIVE TO INDENTATION, SPACES, & SYNTAX. USE A.I TO CORRECT IT IF NECESSARY
