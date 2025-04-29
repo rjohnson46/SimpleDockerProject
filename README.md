@@ -1,6 +1,6 @@
 # Simple Docker Project
 This is a Project to display a simple HELLO WORLD page inside of a Container 
-(This will work on Ubuntu/Debian Based Distros of Linux)
+(This will only work on Pop_OS Linux for now)
 There will be a project in the future that will do this same concept but on the Red Hat Based Distros Of Linux.
 
 Everything you need will be in the "Instructions" file in this Github Repo. My goal was to make it super duper simple for anyone to follow the steps. So anyone should be able to re-create this.
