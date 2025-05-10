@@ -1,55 +1,162 @@
-DTHESE ARE THE INSTRUCTIONS FOR THE SIMPLE DOCKER PROJECT STEP BY STEP
+🐳 Building a Simple "Hello World" Docker Project
+🚀 In this guide, we'll create a containerized Python web application that displays a "Hello World" message. This tutorial works on Ubuntu/Debian-based Linux distros and is optimized for Hashnode with proper formatting and code blocks.
 
-# SimpleDockerProject (UNFINISHED)
-Project to display a simple HELLO WORLD page inside of a Container (This will work on Ubuntu/Debian Distros of Linux)
+🔹 System Preparation
+Before we start, update and upgrade your system packages:
 
-1. Update Linux (sudo apt update)
-2. Upgrade Linux (sudo apt upgrade)
-3. Install docker (sudo apt install docker)
-4. Install docker compose (sudo apt install docker compose)
+bash
+sudo apt update
+sudo apt upgrade -y
+Install Docker and other required dependencies:
 
-5. Install Nano (sudo apt install nano)
-6. Install Pip (sudo apt install pip)
-7.  Upgrade Pip (sudo pip install --upgrade pip)
+bash
+sudo apt install ca-certificates curl gnupg
+Add Docker’s Official GPG Key
+bash
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+Add Docker Repository
+bash
+echo "deb [signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Install Docker
+bash
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+Verify Installation
+Check if Docker is installed:
 
-8. Create docker-Projects directory (mkdir docker-projects)
-9. Change directory to docker-projects (cd /docker-projects)
-    #ALL FILES WILL BE CREATED IN SAME DIRECTORY (docker-projects) 
-  
-12. Create file "app.py" for Python Web application (touch app.py)
-13. Copy & paste code from GitHub file "app.py" located in Github Repo
-14. Open app.py and copy & paste code (sudo nano app.py)
-    After copy & paste hit CTRL+X to save and type Y or Yes to confirm
-    
-15. Create text file for app dependencies (touch requirements.txt)
-16. Open requirements.txt file & add dependencies
-    (sudo nano requirements.txt) #when you type this it should open a text file
-     Line 1 ---> Flask
-     Line 2 ---> redis
-     Hit CTRL+X to save and type Y or Yes to confirm
+bash
+docker --version
+Start and enable Docker:
 
-17. Create dockerfile (touch dockerfile)
+bash
+sudo systemctl enable --now docker
+Check Docker status:
 
-18. Copy & paste code from Github File "dockerfile" located in Github Repo
+bash
+sudo systemctl status docker
+🔹 Install Docker Compose Plugin
+Ubuntu now uses the Docker Compose plugin instead of the standalone binary:
 
-19. Open "dockerfile" and copy & paste code (sudo nano dockerfile)
-   After copy & paste hit CTRL+X to save and type Y or Yes to confirm
+bash
+sudo apt install docker-compose-plugin -y
+Verify installation:
 
-20. Create "docker-compose.yml" file (touch docker-compose.yml)
-    
-21. Open "docker-compose.yml" file and copy & paste code (sudo nano docker-compose.yml)
-    Copy & Paste code from "docker-compose.yml) file located in Github Repo
-    After Copy & Paste hit CTRL+X to save and type Y or YES to confirm
-    #BE AWARE THAT YAML FILES ARE VERY SENSITIVE TO INDENTATION, SPACES, & SYNTAX. USE A.I TO CORRECT IT IF NECESSARY
+bash
+docker compose version
+Install Python Pip for dependencies:
 
-22. Make sure you are still in "docker-projects" directory (cd /docker-projects)
-    #THE COMMAND IN THE NEXT STEP DOESN'T WORK UNLESS YOU ARE IN "DOCKER-PROJECTS" DIR
+bash
+sudo apt install python3-pip
+python3 -m pip install --upgrade pip
+🔹 Create Project Directory
+Set up the directory structure:
 
-23. Run command to start building the images & containers (sudo docker-compose up --build)
+bash
+mkdir docker-projects
+cd docker-projects
+🔹 Create Python Web Application
+Create the app.py file:
 
-24. After commands finish running your container should be built.
-    Go to "http://localhost:5000" on your web browser
-    You should see a message "Hello World! You have visited 1 times"
-    #Refreshing the page will add to visitor count
+bash
+touch app.py
+nano app.py
+Copy & paste the following Python Flask app:
 
-25. To stop or break down container after you are done (sudo docker-compose down)
+python
+from flask import Flask
+import redis
+
+app = Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    try:
+        return cache.incr('hits')
+    except redis.exceptions.ConnectionError:
+        return 1
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return f"Hello World! You have visited {count} times."
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+Save the file (CTRL + X, then Y).
+
+🔹 Define Dependencies
+Create the requirements.txt file:
+
+bash
+touch requirements.txt
+nano requirements.txt
+Add dependencies inside requirements.txt file:
+
+Flask
+redis
+Save (CTRL + X, then Y).
+
+🔹 Create Dockerfile
+Create a Dockerfile:
+
+bash
+touch Dockerfile
+nano Dockerfile
+Paste the following Dockerfile configuration:
+
+dockerfile
+FROM python:3.9
+
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+Save (CTRL + X, then Y).
+
+🔹 Configure Docker Compose
+Create the docker-compose.yml file:
+
+bash
+touch docker-compose.yml
+nano docker-compose.yml
+Paste the Docker Compose config:
+
+yaml
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+Save (CTRL + X, then Y). ⚠ YAML files are sensitive to indentation—validate them before running!
+
+🔹 Build and Run the Project
+Ensure you're in the docker-projects directory:
+
+bash
+cd docker-projects
+Start the containers:
+
+bash
+sudo docker-compose up --build
+🔹 Test the Web App
+Open a browser and go to http://localhost:5000
+
+You should see:
+
+Hello World! You have visited 1 times.
+Refreshing the page will increase the visitor count.
+
+🔹 Stop Containers
+Shut down the containers when you're done:
+
+bash
+sudo docker-compose down
