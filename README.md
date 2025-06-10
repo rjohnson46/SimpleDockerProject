@@ -1,13 +1,24 @@
-# Simple Docker Project
-This is a Project to display a simple HELLO WORLD page inside of a Container 
+# Simple Hello World Container Project
 
-Everything you need will be in the "Instructions" file in this Github Repo. My goal was to make it super duper simple for anyone to follow the steps. So anyone should be able to re-create this.
-There are instructions for setting this up on Ubuntu Linux and instructions for setting this up on Red Hat Linux
+This is a project to display a simple **HELLO WORLD** page inside of a container.
 
-There is file "SimpleDockerProjectRH.py" & "SimpleDockerProjectUB.py" that will build the whole project for you from Scratch that I made into a Python Script using the commands in the "Instructions" file.*
-RH=Red Hat
-UB=Ubuntu
+## 📌 Instructions
+Everything you need will be in the **"Instructions"** file in this GitHub repository. My goal was to make it super simple for anyone to follow the steps, so anyone should be able to re-create this.
 
-I want to give credit to @devops__community on Instagram. This was their project I replicated and about 90% of the code used was theirs so please give them a follow at instagram.com/devops__community. 
+There are instructions for setting this up on:
+- **Ubuntu Linux**
+- **Red Hat Linux**
 
-* = This script has not been FULLY tested yet. I will update this line when it has
+## 🛠 Automated Setup
+There are two files that will build the entire project from scratch using a Python script:
+- `SimpleDockerProjectRH.py` → For **Red Hat Linux** (`RH`)
+- `SimpleDockerProjectUB.py` → For **Ubuntu Linux** (`UB`)
+
+These scripts replicate the setup using the commands outlined in the **"Instructions"** file.
+
+## 🤝 Credits
+I want to give credit to **[@devops__community](https://instagram.com/devops__community) on Instagram**. This was their project that I replicated, and about **90% of the code** used was theirs. Please consider giving them a follow!
+
+---
+
+⚠ **Note:** This script has **not been fully tested yet**. I will update this line once testing is complete.
